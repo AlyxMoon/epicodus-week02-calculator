@@ -14,32 +14,32 @@ function divide (num1, num2) {
   return num1 / num2;
 }
 
-function convertToCelcius (F) {
-  return (F - 32) * 5/9
-}
+$(document).ready(function () {
 
-function convertToFahrenheit (C) {
-  return (C * (9/5)) + 32
-}
+  $('form').submit(function (event) {
+    event.preventDefault()
 
-const F = parseInt(prompt('Enter Fahrenheit: '));
-const C = parseInt(prompt('Enter Celsius: '));
+    const id = '#' + $(this).attr('id')
+    
+    const num1 = parseInt($(id + ' .number1').val())
+    const num2 = parseInt($(id + ' .number2').val())
 
-const resultTemperature = convertToCelcius(F);
-const resultFahrenheit = convertToFahrenheit(C);
+    let result
+    if (id === '#add') {
+      result = add(num1, num2)
+    }
+    if (id === '#subtract') {
+      result = subtract(num1, num2)
+    }
+    if (id === '#multiply') {
+      result = multiply(num1, num2)
+    }
+    if (id === '#divide') {
+      result = divide(num1, num2)
+    }
 
-alert('Celsius: ' + resultTemperature);
-alert('Fahrenheit: ' + resultFahrenheit);
+    const selector = id + ' .output'
+    $(selector).text(result)
+  })
 
-// const num1 = parseInt(prompt('enter first number'));
-// const num2 = parseInt(prompt('enter second number'));
-
-// const resultAdd = add(num1, num2);
-// const resultSubtract = subtract(num1, num2);
-// const resultMultiply = multiply(num1, num2);
-// const resultDivide = divide(num1, num2);
-
-// alert('Added: ' + resultAdd);
-// alert('Subtracted: ' + resultSubtract);
-// alert('Multiplied: ' + resultMultiply);
-// alert('Divided: ' + resultDivide);
+})
